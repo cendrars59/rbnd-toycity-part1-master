@@ -77,29 +77,28 @@ end
 
 # -----------------------------------------------------------------------------
 # Defining the list of brands
-# The purpose is to gather of the brands list into the file in order to
-# make the report by brand
+#
+# Verify for each product brand if it exists already into the list of brands
+# if yes the brand is not added into the list of brands
+# if no the brand is added into the list of brands
 # -----------------------------------------------------------------------------
-
-
 brands = Array.new
-products_hash["items"].each do |toy|$
+
+products_hash["items"].each do |toy|
 	already_exist = false
 	brands.each do |brand|
-		if brand = toy["brand"] already_exist = true
+		already_exist = brand == toy["brand"]? true : false
 	end
-	if already_exist == false brands.push(toy["brand"])
+	if already_exist == false
+		brands.push(toy["brand"])
+	end
 end
 
-puts brands
 
 # -----------------------------------------------------------------------------
 # Genarating the report by brand according the list of brands gathered into the
 # file.
 # -----------------------------------------------------------------------------
-
-
-
 
 brands.each do |brand|
 
@@ -157,3 +156,9 @@ brands.each do |brand|
 	puts "Total amount of sales for the brand without shipping cost: #{total_amount_sales_brand.round(2)}$"
 
 end
+
+# ---------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------
+# End of file
+# ---------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------
