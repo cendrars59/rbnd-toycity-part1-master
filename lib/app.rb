@@ -88,13 +88,14 @@ brands = Array.new
 products_hash["items"].each do |toy|
 	already_exist = false
 	brands.each do |brand|
-		already_exist = brand == toy["brand"]? true : false
+		if brand == toy["brand"]
+			already_exist = true
+		end
 	end
 	if already_exist == false
 		brands.push(toy["brand"])
 	end
 end
-
 
 # -----------------------------------------------------------------------------
 # Genarating the report by brand according the list of brands gathered into the
