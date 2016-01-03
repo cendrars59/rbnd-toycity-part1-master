@@ -60,6 +60,7 @@ products_hash["items"].each do |toy|
 
 	# ---------------------------------------------------------------------------
   # Calculate and print the average discount based off the average sales price
+	# Formula = ((toy full price-toy price)/toy full price)*100
 	# ---------------------------------------------------------------------------
 	puts "Percentage of discount: #{((toy["full-price"].to_f-(total_amount_sales/toy["purchases"].length))/toy["full-price"].to_f).round(2)*100}%"
 
@@ -146,7 +147,6 @@ brands.each do |brand|
 		# Make the sum of the totals of the purchases by produduct
 		total_amount_sales_brand = total_amount_sales_brand + total_amount_sales_toy
 	end
-
 	puts "Average price of the brand toys: #{total_amount_sales_brand.round(2)/toys_list.length}$"
 
 	# ---------------------------------------------------------------------------
@@ -156,6 +156,8 @@ brands.each do |brand|
 	puts "Total amount of sales for the brand without shipping cost: #{total_amount_sales_brand.round(2)}$"
 
 end
+
+
 
 # ---------------------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------------------
