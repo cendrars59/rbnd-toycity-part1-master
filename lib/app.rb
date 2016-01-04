@@ -107,12 +107,11 @@ brands.each do |brand|
 	# Var initialization by brand
 	nb_stocked_unit = 0
 	total_amount_sales_brand = 0
-
+	total_amount_purchase_brand = 0
 	# Products selection by brand
 	toys_list = products_hash["items"].select do |toy|
 		toy["brand"] == brand
 	end
-
 
 	# ---------------------------------------------------------------------------
 	# Print the name of the brand
@@ -137,18 +136,20 @@ brands.each do |brand|
 	# ---------------------------------------------------------------------------
 	toys_list.each do |toy|
 		total_amount_sales_toy = 0
-
+		total_purchases_toys = 0
 		# Calculate the total amount of sales for one toy reference for one brand
 		# For one refrence , make the sum of the amount of the purchases
 		toy["purchases"].each do |purchase|
 			total_amount_sales_toy = total_amount_sales_toy + purchase["price"]
+			total_purchases_toys = total_purchases_toys + 1
 		end
 
 		# Calculate and print the total amount of sales for all toys references for one brand
 		# Make the sum of the totals of the purchases by produduct
 		total_amount_sales_brand = total_amount_sales_brand + total_amount_sales_toy
+		total_amount_purchase_brand = total_amount_purchase_brand + total_purchases_toys
 	end
-	puts "Average price of the brand toys: #{total_amount_sales_brand.round(2)/toys_list.length}$"
+	puts "Average price of the brand toys: #{total_amount_sales_brand.round(2)/total_amount_purchase_brand}$"
 
 	# ---------------------------------------------------------------------------
 	# Calculate and print the total sales volume of all the brand's toys combined
