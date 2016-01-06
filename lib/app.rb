@@ -123,7 +123,6 @@ brands.each do |brand|
 	# Count and print the number of the brand's toys we stock
 	# ---------------------------------------------------------------------------
 
-
   toys_list.each do |toy|
 		nb_stocked_unit = nb_stocked_unit + toy["stock"]
 	end
@@ -134,6 +133,24 @@ brands.each do |brand|
 	# Calculate and print the average price of the brand's toys
 	# Average price = sum of the toy's prices / number of toys
 	# ---------------------------------------------------------------------------
+
+	total_sum_prices = 0
+	total_toys_ref = 0
+	toys_list.each do |toy|
+
+		# Calculate the total amount of sales for one toy reference for one brand
+		# For one refrence , make the sum of the amount of the purchases
+
+		total_sum_prices = total_sum_prices + toy["full-price"].to_f
+		total_toys_ref = total_toys_ref + 1
+	end
+	puts "Number of toys references #{total_toys_ref}"
+	puts "Average price of the brand toys: #{(total_sum_prices/total_toys_ref).round(2)}$"
+
+	# ---------------------------------------------------------------------------
+	# Calculate and print the total sales volume of all the brand's toys combined
+	# ---------------------------------------------------------------------------
+
 	toys_list.each do |toy|
 		total_amount_sales_toy = 0
 		total_purchases_toys = 0
@@ -149,11 +166,6 @@ brands.each do |brand|
 		total_amount_sales_brand = total_amount_sales_brand + total_amount_sales_toy
 		total_amount_purchase_brand = total_amount_purchase_brand + total_purchases_toys
 	end
-	puts "Average price of the brand toys: #{total_amount_sales_brand.round(2)/total_amount_purchase_brand}$"
-
-	# ---------------------------------------------------------------------------
-	# Calculate and print the total sales volume of all the brand's toys combined
-	# ---------------------------------------------------------------------------
 
 	puts "Total amount of sales for the brand without shipping cost: #{total_amount_sales_brand.round(2)}$"
 
